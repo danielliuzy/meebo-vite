@@ -12,9 +12,9 @@ const App = () => {
       <div className="w-full m-4 bg-blue-400 p-6 rounded-lg shadow-lg">
         <div className="flex flex-col items-center">
           <div className="rounded-full p-2">
-            <img className="rounded-lg" src="./src/assets/image.png" />
+            <img className="rounded-lg" src="./src/assets/tamagotchi.png" />
           </div>
-          <h1 className="text-2xl font-bold mt-2">Tamagotchi Name</h1>
+          <h1 className="text-2xl font-bold mt-2">Tamagotchi</h1>
         </div>
       </div>
       <div className="w-full m-4 bg-blue-400 p-6 rounded-lg shadow-lg">
