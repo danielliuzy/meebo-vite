@@ -2,24 +2,23 @@ import { Button } from "./Button";
 
 type Props = {
   name: string;
-  status: Status;
+  score: number;
   widget?: Widget;
   onClick?: () => void;
 };
 
-type Status = "GOOD" | "MID" | "BAD";
 type Widget = "BUTTON" | "FILE";
 
 export const StatusRow = ({
   name,
-  status,
+  score,
   widget = "BUTTON",
   onClick,
 }: Props) => {
   return (
     <div className="flex justify-between">
       <div className="flex flex-row items-center space-x-2">
-        <div>{status === "GOOD" ? "🟢" : status === "MID" ? "🟡" : "🔴"}</div>
+        <div>{score > 0.66 ? "🟢" : score > 0.33 ? "🟡" : "🔴"}</div>
         <div className="text-lg font-semibold">{name}</div>
       </div>
       {widget === "BUTTON" ? (

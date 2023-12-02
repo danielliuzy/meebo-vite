@@ -3,6 +3,13 @@ import { StatusRow } from "./StatusRow";
 
 const App = () => {
   const [animated, setAnimated] = useState(false);
+
+  const [sleep, setSleep] = useState(0.1);
+  const [food, setFood] = useState(0.1);
+  const [exercise, setExercise] = useState(0.1);
+
+  const overallScore = (sleep + food + exercise) / 3;
+
   return (
     <div className="bg-gray-400 w-screen h-screen flex flex-col items-center px-6">
       {/* Top navigation bar */}
@@ -16,7 +23,9 @@ const App = () => {
           <div className="rounded-full p-2">
             <img
               className="rounded-lg"
-              src={`/tamagotchi.${animated ? "gif" : "png"}`}
+              src={`/${overallScore >= 0.5 ? "happy" : "sad"}-tamagotchi.${
+                animated ? "gif" : "png"
+              }`}
             />
           </div>
           <h1 className="text-2xl font-bold mt-2">Tamagotchi</h1>
@@ -28,9 +37,21 @@ const App = () => {
       </div>
       <div className="w-full m-4 bg-blue-400 p-6 rounded-lg shadow-lg">
         <div className="w-full space-y-2">
-          <StatusRow name="Sleep" status="GOOD" />
-          <StatusRow name="Food" status="BAD" widget="FILE" />
-          <StatusRow name="Exercise" status="MID" />
+          <StatusRow
+            name="Sleep"
+            score={sleep}
+            onClick={() => {
+              setSleep(Math.min(1, sleep + 0.1));
+            }}
+          />
+          <StatusRow name="Food" score={food} widget="FILE" />
+          <StatusRow
+            name="Exercise"
+            score={exercise}
+            onClick={() => {
+              setExercise(Math.min(1, exercise + 0.1));
+            }}
+          />
         </div>
       </div>
     </div>
