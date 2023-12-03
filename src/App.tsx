@@ -50,7 +50,9 @@ const App = () => {
               src={`/${overallScore >= 0.7 ? "happy" : "sad"}-tamagotchi.gif`}
             />
           </div>
-          <h1 className="text-2xl font-bold mt-2">My Shiba</h1>
+          <h1 className="text-2xl font-bold mt-2">{`My Shiba ${
+            overallScore >= 0.7 ? "😄" : "😢"
+          }`}</h1>
         </div>
       </div>
       <div className="w-full mt-4 bg-gray-800 p-6 rounded-t-lg shadow-lg h-1/2">
