@@ -35,7 +35,7 @@ const App = () => {
         <div className="flex flex-col items-center">
           <div className="rounded-full p-2 relative w-full">
             {message !== "" && (
-              <div className="w-fit absolute left-1/2 top-[20%] -translate-x-1/2 -translate-y-1/2  text-center">
+              <div className="w-3/4 absolute left-1/2 top-[30%] -translate-x-1/2 -translate-y-1/2  text-center">
                 <div
                   className={
                     "animate-bounce bg-white rounded-lg text-black text-2xl p-2 font-bold border-black border-2"
