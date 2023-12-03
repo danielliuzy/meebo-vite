@@ -1,4 +1,5 @@
 import OpenAI from "openai";
+import { ClipLoader } from "react-spinners";
 
 type Props = {
   name: string;
@@ -6,8 +7,10 @@ type Props = {
   max?: number;
   unit?: string;
   widget?: Widget;
+  loading?: boolean;
   setScore?: (score: number) => void;
   setMessage?: (message: string) => void;
+  setLoading?: (show: boolean) => void;
 };
 
 type Widget = "FILE";
@@ -18,8 +21,10 @@ export const StatusRow = ({
   max = 1,
   unit,
   widget,
+  loading,
   setScore,
   setMessage,
+  setLoading,
 }: Props) => {
   return (
     <div className="flex justify-between">
@@ -35,7 +40,7 @@ export const StatusRow = ({
           <div className="text-md">{unit}</div>
         </div>
       ) : (
-        <label className="flex items-center px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 hover:cursor-pointer">
+        <label className="flex items-center px-4 py-2 bg-gray-500 text-white rounded-lg hover:bg-gray-700 hover:cursor-pointer">
           <input
             className="hidden"
             type="file"
@@ -52,6 +57,7 @@ export const StatusRow = ({
               const file = e.target.files[0];
               const reader = new FileReader();
               reader.readAsDataURL(file);
+              setLoading?.(true);
               reader.onload = async () => {
                 const imageData = reader.result;
                 if (imageData == null) {
@@ -78,7 +84,6 @@ export const StatusRow = ({
                   ],
                 });
                 if (response.choices[0].message.content == null) {
-                  console.log("openai error message!");
                   return;
                 }
                 let responseContent = response.choices[0].message.content;
@@ -90,11 +95,11 @@ export const StatusRow = ({
                     responseContent.indexOf("{")
                   );
                 }
-                console.log(responseContent);
                 const { score, nextMeal } = JSON.parse(responseContent) as {
                   score: number;
                   nextMeal: string;
                 };
+                setLoading?.(false);
                 setScore?.(score);
                 setMessage?.(nextMeal.toLowerCase());
                 return;
@@ -103,7 +108,7 @@ export const StatusRow = ({
               return;
             }}
           />
-          📷
+          {loading ? <ClipLoader size={24} /> : "📷"}
         </label>
       )}
     </div>
