@@ -23,7 +23,7 @@ const App = () => {
   return (
     <div className="bg-gray-100 w-screen h-screen flex flex-col items-center px-6">
       {/* Top navigation bar */}
-      <nav className="flex flex-row items-center justify-center w-full p-6 bg-gray-800 shadow rounded-b-lg">
+      <nav className="flex flex-row items-center justify-center w-full p-4 bg-gray-800 shadow rounded-b-lg">
         <div className="flex flex-row items-center space-x-2">
           <img src="/favicon.png" width={36} />
           <div className="text-lg font-bold w-full text-center">Shiboo</div>
